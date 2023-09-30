@@ -1,0 +1,11 @@
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media screen and (max-width: 768px){
+  .list {
+    display: block;
+    text-align: center;
+  }
+}
