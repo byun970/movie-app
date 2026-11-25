@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Movie from "../components/Movie";
 import styles from "./Home.module.css";
+import { MovieSummary } from "../types";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<MovieSummary[]>([]);
   const getMovies = async () => {
     const json = await (
       await fetch(
@@ -17,13 +18,16 @@ const Home = () => {
   useEffect(() => {
     getMovies();
   }, []);
-  console.log(movies);
   return (
     <div>
       {loading ? (
-        <h1>Loading...</h1>
+        <div className={styles.loading}>Loading...</div>
       ) : (
-        <div className={styles.list}>
+        <div className={styles.container}>
+          <h1 className={styles.title}>
+            Top <span>Rated</span> Movies
+          </h1>
+          <div className={styles.list}>
           {movies.map((movie) => (
             <Movie
               key={movie.id}
@@ -33,6 +37,7 @@ const Home = () => {
               genres={movie.genres}
             />
           ))}
+          </div>
         </div>
       )}
     </div>

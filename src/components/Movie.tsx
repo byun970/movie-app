@@ -1,9 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styles from "./Movie.module.css";
 
-const Movie = ({ id, coverImg, title, summary, genres }) => {
+interface MovieProps {
+  id: number;
+  coverImg: string;
+  title: string;
+  genres: string[];
+}
+
+const Movie = ({ id, coverImg, title }: MovieProps) => {
   return (
     <div className={styles.box}>
       <img src={coverImg} alt={title} />
@@ -12,13 +18,6 @@ const Movie = ({ id, coverImg, title, summary, genres }) => {
       </h2>
     </div>
   );
-};
-
-Movie.propTypes = {
-  id: PropTypes.number.isRequired,
-  coverImg: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Movie;
