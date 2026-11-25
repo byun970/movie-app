@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./routes/Home";
 import Detail from "./routes/Detail";
+import NotFound from "./routes/NotFound";
 import styles from "./App.module.css";
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movie/:id" element={<Detail />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
