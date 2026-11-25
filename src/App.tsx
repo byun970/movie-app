@@ -7,7 +7,7 @@ import styles from "./App.module.css";
 
 const App = () => {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <header className={styles.header}>
         <div className={styles.headerInner}>
           <Link to="/" className={styles.logo}>
@@ -19,7 +19,7 @@ const App = () => {
         </div>
       </header>
       <Routes>
-        <Route path={`${process.env.PUBLIC_URL}/`} element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/movie/:id" element={<Detail />} />
       </Routes>
     </Router>
