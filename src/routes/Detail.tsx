@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import styles from './Detail.module.css';
 import { MovieDetail } from "../types";
+import { API_BASE } from "../api";
 
 const Detail = () => {
   const [loading, setLoading] = useState(true);
@@ -9,7 +10,7 @@ const Detail = () => {
   const { id } = useParams();
   const getMovie = useCallback(async () => {
     const json = await (
-      await fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`)
+      await fetch(`${API_BASE}/movie_details.json?movie_id=${id}`)
     ).json();
     setMovie(json.data.movie);
     setLoading(false);

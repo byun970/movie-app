@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Movie from "../components/Movie";
 import styles from "./Home.module.css";
 import { MovieSummary } from "../types";
+import { API_BASE } from "../api";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -9,7 +10,7 @@ const Home = () => {
   const getMovies = async () => {
     const json = await (
       await fetch(
-        `https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year`
+        `${API_BASE}/list_movies.json?minimum_rating=9&sort_by=year`
       )
     ).json();
     setMovies(json.data.movies);
