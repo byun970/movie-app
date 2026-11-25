@@ -1,39 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Movie from "../components/Movie";
 import Status from "../components/Status";
 import styles from "./Home.module.css";
-import { MovieSummary } from "../types";
-import { fetchJson, getErrorMessage } from "../api";
-
-interface ListData {
-  movies?: MovieSummary[];
-}
+import { useMovies } from "../hooks/useMovies";
 
 const Home = () => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [movies, setMovies] = useState<MovieSummary[]>([]);
-  const [attempt, setAttempt] = useState(0);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    setLoading(true);
-    setError(null);
-    fetchJson<ListData>(
-      "/list_movies.json?minimum_rating=9&sort_by=year",
-      controller.signal
-    )
-      .then((data) => {
-        setMovies(data.movies ?? []);
-        setLoading(false);
-      })
-      .catch((e) => {
-        if (controller.signal.aborted) return;
-        setError(getErrorMessage(e));
-        setLoading(false);
-      });
-    return () => controller.abort();
-  }, [attempt]);
+  const { movies, loading, error, retry } = useMovies();
 
   if (loading) {
     return <div className={styles.loading}>Loading...</div>;
@@ -43,7 +15,7 @@ const Home = () => {
       <Status
         title="영화 목록을 불러오지 못했어요"
         message={error}
-        onRetry={() => setAttempt((n) => n + 1)}
+        onRetry={retry}
       />
     );
   }
