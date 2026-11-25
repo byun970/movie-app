@@ -37,3 +37,12 @@
     gap: 24px 12px;
   }
 }
+
+.listLoading,
+.empty {
+  padding: 80px 0;
+  text-align: center;
+  color: var(--fg-3);
+  font-size: 18px;
+  font-weight: 500;
+}

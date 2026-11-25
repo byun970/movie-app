@@ -1,0 +1,89 @@
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+}
+
+.search,
+.sort {
+  height: 40px;
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-sm);
+  background: var(--bg-1);
+  color: var(--fg-1);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.search {
+  flex: 1;
+  max-width: 288px;
+  padding: 0 12px 0 16px;
+}
+
+.sort {
+  padding: 0 12px;
+  cursor: pointer;
+}
+
+.search::placeholder {
+  color: var(--fg-3);
+}
+
+.search:focus,
+.sort:focus {
+  outline: none;
+  border-color: var(--point);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip,
+.chipActive {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.chip {
+  border: 1px solid var(--border-1);
+  background: var(--bg-1);
+  color: var(--fg-2);
+}
+
+.chip:hover {
+  border-color: var(--border-2);
+}
+
+.chipActive {
+  border: 1px solid var(--point);
+  background: var(--point);
+  color: #fff;
+}
+
+.chip:focus-visible,
+.chipActive:focus-visible {
+  outline: 2px solid var(--point);
+  outline-offset: 2px;
+}
+
+@media screen and (max-width: 480px) {
+  .search {
+    max-width: none;
+  }
+}
